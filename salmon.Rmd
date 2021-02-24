@@ -1,6 +1,6 @@
 ---
 title: "US salmon imports from `r params$country`"
-author: "Allison Horst"
+author: "Roupen Khanjian"
 date: "2/22/2021"
 output: html_document
 params:
@@ -14,6 +14,8 @@ Data: US Department of Agriculture Economic Research Service. *Aquaculture data:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+
+
 
 # Clean up salmon & keep the four countries with top total imports in total for the years reported (Chile, Canada, Norway, United Kingdom)
 ```
@@ -58,6 +60,8 @@ render_salmon_report = function(country) {
 # A for loop to run them all: 
 
 country_name <- unique(salmon_imports$Country)
+
+map(country_name, render_salmon_report) # this works as well!!!
 
 for (country in country_name) {
     render_salmon_report(country)
